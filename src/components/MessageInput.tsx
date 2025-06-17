@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Send, Mic } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface MessageInputProps {
   onSendMessage: (message: string) => void;
