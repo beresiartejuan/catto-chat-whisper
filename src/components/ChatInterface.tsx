@@ -1,9 +1,7 @@
 
 import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
-import { Bot } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -58,29 +56,24 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto p-4">
-      {/* Header */}
-      <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm mb-4 p-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-            <Bot className="w-6 h-6 text-white" />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold text-white">Catto</h1>
-            <p className="text-sm text-slate-400">Tu asistente personal</p>
-          </div>
-        </div>
-      </Card>
+    <div className="flex flex-col h-full max-w-3xl mx-auto">
+      {/* Header minimalista */}
+      <div className="border-b border-slate-800 pb-4 mb-6 px-6 pt-6">
+        <h1 className="text-lg font-medium text-slate-200">Catto</h1>
+        <p className="text-sm text-slate-500">Asistente personal</p>
+      </div>
 
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto mb-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent">
+      {/* Área de mensajes */}
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
         {messages.map((message) => (
           <Message key={message.id} message={message} />
         ))}
       </div>
 
-      {/* Input Area */}
-      <MessageInput onSendMessage={handleSendMessage} />
+      {/* Área de input */}
+      <div className="px-6 pb-6">
+        <MessageInput onSendMessage={handleSendMessage} />
+      </div>
     </div>
   );
 };
