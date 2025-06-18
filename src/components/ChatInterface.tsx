@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Settings, Calendar, FileText } from "lucide-react";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
 
@@ -19,6 +20,7 @@ const ChatInterface = () => {
       timestamp: new Date(),
     },
   ]);
+  const [activeSection, setActiveSection] = useState<"chat" | "config" | "events" | "notes">("chat");
 
   const handleSendMessage = (content: string) => {
     const userMessage: ChatMessage = {
@@ -55,25 +57,94 @@ const ChatInterface = () => {
     return responses[Math.floor(Math.random() * responses.length)];
   };
 
+  const renderContent = () => {
+    switch (activeSection) {
+      case "config":
+        return (
+          <div className="flex-1 p-6 text-slate-300">
+            <h2 className="text-lg font-medium mb-4">Configuración</h2>
+            <p className="text-sm text-slate-400">Ajustes del asistente...</p>
+          </div>
+        );
+      case "events":
+        return (
+          <div className="flex-1 p-6 text-slate-300">
+            <h2 className="text-lg font-medium mb-4">Eventos</h2>
+            <p className="text-sm text-slate-400">Próximos eventos...</p>
+          </div>
+        );
+      case "notes":
+        return (
+          <div className="flex-1 p-6 text-slate-300">
+            <h2 className="text-lg font-medium mb-4">Notas</h2>
+            <p className="text-sm text-slate-400">Tus notas rápidas...</p>
+          </div>
+        );
+      default:
+        return (
+          <>
+            {/* Área de mensajes */}
+            <div className="flex-1 overflow-y-auto px-6 pb-6">
+              {messages.map((message) => (
+                <Message key={message.id} message={message} />
+              ))}
+            </div>
+
+            {/* Área de input */}
+            <div className="px-6 pb-6">
+              <MessageInput onSendMessage={handleSendMessage} />
+            </div>
+          </>
+        );
+    }
+  };
+
   return (
     <div className="flex flex-col h-full max-w-3xl mx-auto">
-      {/* Header minimalista */}
-      <div className="border-b border-slate-800 pb-4 mb-6 px-6 pt-6">
-        <h1 className="text-lg font-medium text-slate-200">Catto</h1>
-        <p className="text-sm text-slate-500">Asistente personal</p>
+      {/* Menú minimalista */}
+      <div className="flex items-center justify-between px-6 py-3 border-b border-slate-800">
+        <span className="text-slate-300 font-medium">Catto</span>
+        <div className="flex space-x-1">
+          <button
+            onClick={() => setActiveSection("chat")}
+            className={`p-2 rounded transition-colors ${
+              activeSection === "chat" ? "bg-slate-700" : "hover:bg-slate-800"
+            }`}
+            title="Chat"
+          >
+            <FileText className="w-4 h-4 text-slate-400" />
+          </button>
+          <button
+            onClick={() => setActiveSection("events")}
+            className={`p-2 rounded transition-colors ${
+              activeSection === "events" ? "bg-slate-700" : "hover:bg-slate-800"
+            }`}
+            title="Eventos"
+          >
+            <Calendar className="w-4 h-4 text-slate-400" />
+          </button>
+          <button
+            onClick={() => setActiveSection("notes")}
+            className={`p-2 rounded transition-colors ${
+              activeSection === "notes" ? "bg-slate-700" : "hover:bg-slate-800"
+            }`}
+            title="Notas"
+          >
+            <FileText className="w-4 h-4 text-slate-400" />
+          </button>
+          <button
+            onClick={() => setActiveSection("config")}
+            className={`p-2 rounded transition-colors ${
+              activeSection === "config" ? "bg-slate-700" : "hover:bg-slate-800"
+            }`}
+            title="Configuración"
+          >
+            <Settings className="w-4 h-4 text-slate-400" />
+          </button>
+        </div>
       </div>
 
-      {/* Área de mensajes */}
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
-        {messages.map((message) => (
-          <Message key={message.id} message={message} />
-        ))}
-      </div>
-
-      {/* Área de input */}
-      <div className="px-6 pb-6">
-        <MessageInput onSendMessage={handleSendMessage} />
-      </div>
+      {renderContent()}
     </div>
   );
 };
