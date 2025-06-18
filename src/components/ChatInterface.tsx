@@ -129,7 +129,7 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-3xl mx-auto bg-slate-800 rounded-2xl m-4 border border-slate-700/40 shadow-xl">
+    <div className="flex flex-col h-[70vh] max-w-3xl mx-auto bg-slate-800 rounded-2xl m-4 border border-slate-700/40 shadow-xl">
       {/* Encabezado minimalista con Catto */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700/30 bg-slate-700 rounded-t-2xl flex-shrink-0">
         <div className="flex items-center gap-2">
