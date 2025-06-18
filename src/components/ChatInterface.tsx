@@ -140,11 +140,6 @@ const ChatInterface = () => {
                   </div>
                 </div>
               </div>
-              <div className="mt-4 p-3 bg-slate-700/30 rounded-lg border border-slate-600/20">
-                <p className="text-xs text-slate-400 italic">
-                  ℹ️ Esta información se actualiza automáticamente según las interacciones y no puede ser modificada manualmente.
-                </p>
-              </div>
             </div>
           </div>
         );
