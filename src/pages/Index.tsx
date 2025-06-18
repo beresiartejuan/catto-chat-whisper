@@ -3,7 +3,7 @@ import ChatInterface from "@/components/ChatInterface";
 
 const Index = () => {
   return (
-    <div className="h-screen bg-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 p-2">
       <ChatInterface />
     </div>
   );

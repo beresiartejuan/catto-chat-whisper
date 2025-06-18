@@ -27,15 +27,15 @@ const MessageInput = ({ onSendMessage }: MessageInputProps) => {
   };
 
   return (
-    <div className="border-t border-slate-800 pt-4">
-      <form onSubmit={handleSubmit} className="flex items-end space-x-3">
+    <div className="border-t border-blue-800/50 pt-6">
+      <form onSubmit={handleSubmit} className="flex items-end space-x-4">
         <div className="flex-1">
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Escribe tu mensaje..."
-            className="min-h-[50px] max-h-32 resize-none bg-slate-900 border-slate-700 text-slate-200 placeholder-slate-500 focus:border-slate-600 focus:ring-0"
+            className="min-h-[60px] max-h-32 resize-none bg-blue-950/50 border-blue-800/50 text-blue-100 placeholder-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 rounded-xl shadow-inner backdrop-blur-sm"
             rows={1}
           />
         </div>
@@ -44,9 +44,9 @@ const MessageInput = ({ onSendMessage }: MessageInputProps) => {
           type="submit"
           disabled={!message.trim()}
           size="icon"
-          className="bg-slate-700 hover:bg-slate-600 disabled:opacity-30 border-0"
+          className="bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 disabled:opacity-40 border-0 shadow-lg shadow-blue-600/30 rounded-xl h-[60px] w-[60px] transition-all duration-200 hover:scale-105"
         >
-          <Send className="w-4 h-4" />
+          <Send className="w-5 h-5" />
         </Button>
       </form>
     </div>

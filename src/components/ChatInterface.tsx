@@ -61,37 +61,45 @@ const ChatInterface = () => {
     switch (activeSection) {
       case "config":
         return (
-          <div className="flex-1 p-6 text-slate-300">
-            <h2 className="text-lg font-medium mb-4">Configuración</h2>
-            <p className="text-sm text-slate-400">Ajustes del asistente...</p>
+          <div className="flex-1 p-8 text-blue-100">
+            <h2 className="text-xl font-semibold mb-6 text-blue-200">Configuración</h2>
+            <div className="bg-blue-900/30 rounded-xl p-6 border border-blue-800/50">
+              <p className="text-blue-300">Ajustes del asistente...</p>
+            </div>
           </div>
         );
       case "events":
         return (
-          <div className="flex-1 p-6 text-slate-300">
-            <h2 className="text-lg font-medium mb-4">Eventos</h2>
-            <p className="text-sm text-slate-400">Próximos eventos...</p>
+          <div className="flex-1 p-8 text-blue-100">
+            <h2 className="text-xl font-semibold mb-6 text-blue-200">Eventos</h2>
+            <div className="bg-blue-900/30 rounded-xl p-6 border border-blue-800/50">
+              <p className="text-blue-300">Próximos eventos...</p>
+            </div>
           </div>
         );
       case "notes":
         return (
-          <div className="flex-1 p-6 text-slate-300">
-            <h2 className="text-lg font-medium mb-4">Notas</h2>
-            <p className="text-sm text-slate-400">Tus notas rápidas...</p>
+          <div className="flex-1 p-8 text-blue-100">
+            <h2 className="text-xl font-semibold mb-6 text-blue-200">Notas</h2>
+            <div className="bg-blue-900/30 rounded-xl p-6 border border-blue-800/50">
+              <p className="text-blue-300">Tus notas rápidas...</p>
+            </div>
           </div>
         );
       default:
         return (
           <>
             {/* Área de mensajes */}
-            <div className="flex-1 overflow-y-auto px-6 pb-6">
-              {messages.map((message) => (
-                <Message key={message.id} message={message} />
-              ))}
+            <div className="flex-1 overflow-y-auto px-8 py-6 scrollbar-thin scrollbar-thumb-blue-600">
+              <div className="space-y-6">
+                {messages.map((message) => (
+                  <Message key={message.id} message={message} />
+                ))}
+              </div>
             </div>
 
             {/* Área de input */}
-            <div className="px-6 pb-6">
+            <div className="px-8 pb-8 pt-4">
               <MessageInput onSendMessage={handleSendMessage} />
             </div>
           </>
@@ -100,46 +108,54 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-3xl mx-auto">
+    <div className="flex flex-col h-full max-w-4xl mx-auto bg-slate-950/50 rounded-2xl m-4 border border-blue-900/30 shadow-2xl shadow-blue-900/20">
       {/* Menú minimalista */}
-      <div className="flex items-center justify-between px-6 py-3 border-b border-slate-800">
-        <span className="text-slate-300 font-medium">Catto</span>
-        <div className="flex space-x-1">
+      <div className="flex items-center justify-between px-8 py-4 border-b border-blue-800/50 bg-gradient-to-r from-blue-950/80 to-slate-950/80 rounded-t-2xl">
+        <span className="text-blue-200 font-semibold text-lg">Catto</span>
+        <div className="flex space-x-2">
           <button
             onClick={() => setActiveSection("chat")}
-            className={`p-2 rounded transition-colors ${
-              activeSection === "chat" ? "bg-slate-700" : "hover:bg-slate-800"
+            className={`p-3 rounded-xl transition-all duration-200 ${
+              activeSection === "chat" 
+                ? "bg-blue-700 text-blue-100 shadow-lg shadow-blue-700/50" 
+                : "hover:bg-blue-900/60 text-blue-400 hover:text-blue-300"
             }`}
             title="Chat"
           >
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-5 h-5" />
           </button>
           <button
             onClick={() => setActiveSection("events")}
-            className={`p-2 rounded transition-colors ${
-              activeSection === "events" ? "bg-slate-700" : "hover:bg-slate-800"
+            className={`p-3 rounded-xl transition-all duration-200 ${
+              activeSection === "events" 
+                ? "bg-blue-700 text-blue-100 shadow-lg shadow-blue-700/50" 
+                : "hover:bg-blue-900/60 text-blue-400 hover:text-blue-300"
             }`}
             title="Eventos"
           >
-            <Calendar className="w-4 h-4 text-slate-400" />
+            <Calendar className="w-5 h-5" />
           </button>
           <button
             onClick={() => setActiveSection("notes")}
-            className={`p-2 rounded transition-colors ${
-              activeSection === "notes" ? "bg-slate-700" : "hover:bg-slate-800"
+            className={`p-3 rounded-xl transition-all duration-200 ${
+              activeSection === "notes" 
+                ? "bg-blue-700 text-blue-100 shadow-lg shadow-blue-700/50" 
+                : "hover:bg-blue-900/60 text-blue-400 hover:text-blue-300"
             }`}
             title="Notas"
           >
-            <FileText className="w-4 h-4 text-slate-400" />
+            <FileText className="w-5 h-5" />
           </button>
           <button
             onClick={() => setActiveSection("config")}
-            className={`p-2 rounded transition-colors ${
-              activeSection === "config" ? "bg-slate-700" : "hover:bg-slate-800"
+            className={`p-3 rounded-xl transition-all duration-200 ${
+              activeSection === "config" 
+                ? "bg-blue-700 text-blue-100 shadow-lg shadow-blue-700/50" 
+                : "hover:bg-blue-900/60 text-blue-400 hover:text-blue-300"
             }`}
             title="Configuración"
           >
-            <Settings className="w-4 h-4 text-slate-400" />
+            <Settings className="w-5 h-5" />
           </button>
         </div>
       </div>
