@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importar fuente suave y amigable */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
 @layer base {
@@ -93,7 +96,16 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
   }
+}
+
+/* Patrón de fondo sutil */
+.pattern-bg {
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
 /* Custom scrollbar mejorado */
@@ -102,17 +114,17 @@
     scrollbar-width: thin;
   }
   
-  .scrollbar-thumb-blue-600 {
-    scrollbar-color: #2563eb transparent;
+  .scrollbar-thumb-slate-600 {
+    scrollbar-color: #475569 transparent;
   }
   
   .scrollbar-track-transparent {
     scrollbar-track-color: transparent;
   }
 
-  /* Webkit scrollbar para Chrome/Safari con tonos azules */
+  /* Webkit scrollbar para Chrome/Safari con tonos suaves */
   .scrollbar-thin::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
   
   .scrollbar-thin::-webkit-scrollbar-track {
@@ -120,21 +132,20 @@
   }
   
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #2563eb, #1d4ed8);
-    border-radius: 6px;
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    background: rgba(71, 85, 105, 0.6);
+    border-radius: 3px;
   }
   
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #1d4ed8, #1e40af);
+    background: rgba(71, 85, 105, 0.8);
   }
 }
 
-/* Animaciones mejoradas */
+/* Animaciones suaves */
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -142,26 +153,37 @@
   }
 }
 
-@keyframes glow-pulse {
+@keyframes gentle-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+    opacity: 1;
   }
   50% {
-    box-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+    opacity: 0.7;
   }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.4s ease-out;
+  animation: fade-in 0.3s ease-out;
 }
 
-.animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
+.animate-gentle-pulse {
+  animation: gentle-pulse 2s ease-in-out infinite;
 }
 
-/* Efectos de cristal y glassmorphism */
+/* Efectos de cristal sutiles */
 .glass-effect {
-  backdrop-filter: blur(16px);
-  background: rgba(30, 58, 138, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  backdrop-filter: blur(8px);
+  background: rgba(30, 41, 59, 0.1);
+  border: 1px solid rgba(71, 85, 105, 0.2);
+}
+
+/* Extensión de colores personalizados */
+@layer utilities {
+  .text-warm-gray {
+    color: #6b7280;
+  }
+  
+  .bg-warm-dark {
+    background-color: #1e293b;
+  }
 }

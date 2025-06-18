@@ -27,15 +27,15 @@ const MessageInput = ({ onSendMessage }: MessageInputProps) => {
   };
 
   return (
-    <div className="border-t border-blue-800/50 pt-6">
-      <form onSubmit={handleSubmit} className="flex items-end space-x-4">
+    <div className="border-t border-slate-700/30 pt-4">
+      <form onSubmit={handleSubmit} className="flex items-end space-x-3">
         <div className="flex-1">
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Escribe tu mensaje..."
-            className="min-h-[60px] max-h-32 resize-none bg-blue-950/50 border-blue-800/50 text-blue-100 placeholder-blue-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 rounded-xl shadow-inner backdrop-blur-sm"
+            placeholder="Escribe a Catto..."
+            className="min-h-[50px] max-h-32 resize-none bg-slate-800/40 border-slate-600/30 text-slate-100 placeholder-slate-400 focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30 rounded-xl backdrop-blur-sm font-light"
             rows={1}
           />
         </div>
@@ -44,9 +44,9 @@ const MessageInput = ({ onSendMessage }: MessageInputProps) => {
           type="submit"
           disabled={!message.trim()}
           size="icon"
-          className="bg-gradient-to-br from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 disabled:opacity-40 border-0 shadow-lg shadow-blue-600/30 rounded-xl h-[60px] w-[60px] transition-all duration-200 hover:scale-105"
+          className="bg-amber-500 hover:bg-amber-600 disabled:opacity-40 border-0 rounded-xl h-[50px] w-[50px] transition-all duration-200 hover:scale-105 shadow-sm"
         >
-          <Send className="w-5 h-5" />
+          <Send className="w-4 h-4" />
         </Button>
       </form>
     </div>

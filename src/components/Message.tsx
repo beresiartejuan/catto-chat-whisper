@@ -1,5 +1,5 @@
 
-import { Bot, User } from "lucide-react";
+import { Cat, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ChatMessage {
@@ -17,33 +17,33 @@ const Message = ({ message }: MessageProps) => {
   const isUser = message.sender === "user";
   
   return (
-    <div className={cn("flex items-start space-x-4", isUser && "flex-row-reverse space-x-reverse")}>
-      {/* Avatar mejorado */}
+    <div className={cn("flex items-start space-x-3", isUser && "flex-row-reverse space-x-reverse")}>
+      {/* Avatar con temática felina */}
       <div className={cn(
-        "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1 shadow-lg",
+        "w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-1",
         isUser 
-          ? "bg-gradient-to-br from-blue-600 to-blue-700 shadow-blue-600/30" 
-          : "bg-gradient-to-br from-blue-800 to-blue-900 shadow-blue-800/30"
+          ? "bg-gradient-to-br from-amber-100 to-amber-200 shadow-sm" 
+          : "bg-gradient-to-br from-slate-700 to-slate-800 shadow-sm"
       )}>
         {isUser ? (
-          <User className="w-5 h-5 text-blue-100" />
+          <User className="w-4 h-4 text-amber-700" />
         ) : (
-          <Bot className="w-5 h-5 text-blue-200" />
+          <Cat className="w-4 h-4 text-amber-200" />
         )}
       </div>
 
-      {/* Contenido del mensaje mejorado */}
+      {/* Contenido del mensaje */}
       <div className={cn("max-w-[75%]", isUser && "flex flex-col items-end")}>
         <div className={cn(
-          "px-5 py-4 rounded-2xl shadow-lg backdrop-blur-sm border",
+          "px-4 py-3 rounded-2xl border",
           isUser 
-            ? "bg-gradient-to-br from-blue-600 to-blue-700 text-blue-50 border-blue-500/30 shadow-blue-600/20" 
-            : "bg-gradient-to-br from-blue-950/80 to-slate-900/80 text-blue-100 border-blue-800/50 shadow-blue-900/20"
+            ? "bg-amber-50 text-amber-900 border-amber-200/50" 
+            : "bg-slate-800/60 text-slate-100 border-slate-700/50 backdrop-blur-sm"
         )}>
-          <p className="text-sm leading-relaxed">{message.content}</p>
+          <p className="text-sm leading-relaxed font-light">{message.content}</p>
         </div>
         
-        <span className="text-xs text-blue-400 mt-2 px-2 opacity-75">
+        <span className="text-xs text-slate-400 mt-1.5 px-2">
           {message.timestamp.toLocaleTimeString('es-ES', { 
             hour: '2-digit', 
             minute: '2-digit' 
