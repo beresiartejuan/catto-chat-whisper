@@ -1,3 +1,4 @@
+
 import { Cat, Calendar, FileText, Settings, Wifi, WifiOff } from "lucide-react";
 import ConfigurationView from "./ConfigurationView";
 import EventsView from "./EventsView";
@@ -50,11 +51,13 @@ const ChatInterface = () => {
           
           {/* Indicador de conexión */}
           <div className="flex items-center gap-1">
-            {state.isConnected ? (
-              <Wifi className="w-4 h-4 text-green-400" title="Conectado al servidor" />
-            ) : (
-              <WifiOff className="w-4 h-4 text-red-400" title="Desconectado del servidor" />
-            )}
+            <div title={state.isConnected ? "Conectado al servidor" : "Desconectado del servidor"}>
+              {state.isConnected ? (
+                <Wifi className="w-4 h-4 text-green-400" />
+              ) : (
+                <WifiOff className="w-4 h-4 text-red-400" />
+              )}
+            </div>
             <span className={`text-xs ${state.isConnected ? 'text-green-400' : 'text-red-400'}`}>
               {state.isConnected ? 'Online' : 'Offline'}
             </span>
