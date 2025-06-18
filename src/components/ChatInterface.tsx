@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Settings, Calendar, FileText, Cat, Save } from "lucide-react";
+import { Settings, Calendar, FileText, Cat, Save, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -12,6 +11,12 @@ interface ChatMessage {
   content: string;
   sender: "user" | "catto";
   timestamp: Date;
+}
+
+interface Note {
+  id: string;
+  body: string;
+  tags: string[];
 }
 
 const ChatInterface = () => {
@@ -33,6 +38,25 @@ const ChatInterface = () => {
     lastUpdate: new Date().toLocaleDateString('es-ES'),
     personalityMode: "Amigable"
   };
+
+  // Notas generadas por el asistente
+  const [notes] = useState<Note[]>([
+    {
+      id: "note-1",
+      body: "El usuario parece interesado en funcionalidades de productividad. Recordar sugerir herramientas de organización en futuras conversaciones.",
+      tags: ["productividad", "usuario", "preferencias"]
+    },
+    {
+      id: "note-2", 
+      body: "Conversación sobre configuración del sistema. El usuario prefiere interfaces minimalistas y colores oscuros.",
+      tags: ["ui", "preferencias", "configuración"]
+    },
+    {
+      id: "note-3",
+      body: "Interés mostrado en automatización de tareas. Considerar sugerir flujos de trabajo automatizados.",
+      tags: ["automatización", "tareas", "eficiencia"]
+    }
+  ]);
 
   const handleSendMessage = (content: string) => {
     const userMessage: ChatMessage = {
@@ -158,13 +182,33 @@ const ChatInterface = () => {
         );
       case "notes":
         return (
-          <div className="flex-1 p-6 text-slate-100">
-            <h2 className="text-lg font-light mb-4 text-slate-200 flex items-center gap-2">
+          <div className="flex-1 p-6 text-slate-100 overflow-y-auto">
+            <h2 className="text-lg font-light mb-6 text-slate-200 flex items-center gap-2">
               <FileText className="w-5 h-5" />
-              Notas
+              Notas del Asistente
             </h2>
-            <div className="bg-slate-800/40 rounded-xl p-5 border border-slate-700/30 backdrop-blur-sm">
-              <p className="text-slate-300 font-light">Tus notas rápidas...</p>
+            <div className="space-y-4">
+              {notes.map((note) => (
+                <div key={note.id} className="bg-slate-800/40 rounded-xl p-5 border border-slate-700/30 backdrop-blur-sm">
+                  <div className="mb-3">
+                    <p className="text-slate-200 text-sm leading-relaxed">{note.body}</p>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-2">
+                      {note.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="inline-flex items-center gap-1 px-2 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-md border border-amber-500/20"
+                        >
+                          <Tag className="w-3 h-3" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="text-slate-500 text-xs font-mono">ID: {note.id}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         );
