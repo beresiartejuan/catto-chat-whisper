@@ -1,10 +1,10 @@
+
 import { useState } from "react";
-import { Settings, Calendar, FileText, Cat, Save, Tag } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import Message from "./Message";
-import MessageInput from "./MessageInput";
+import { Settings, Calendar, FileText, Cat } from "lucide-react";
+import ConfigurationView from "./ConfigurationView";
+import EventsView from "./EventsView";
+import NotesView from "./NotesView";
+import ChatView from "./ChatView";
 
 interface ChatMessage {
   id: string;
@@ -102,140 +102,23 @@ const ChatInterface = () => {
     switch (activeSection) {
       case "config":
         return (
-          <div className="flex-1 p-6 text-slate-100 overflow-y-auto">
-            <h2 className="text-lg font-light mb-6 text-slate-200 flex items-center gap-2">
-              <Settings className="w-5 h-5" />
-              Configuración
-            </h2>
-            
-            {/* Estado del Asistente (Solo lectura) */}
-            <div className="bg-slate-800/40 rounded-xl p-6 border border-slate-700/30 backdrop-blur-sm mb-6">
-              <h3 className="text-md font-medium mb-4 text-slate-200 flex items-center gap-2">
-                <Cat className="w-4 h-4 text-amber-400" />
-                Estado Actual del Asistente
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Estado de ánimo:</span>
-                    <span className="text-slate-200">{assistantStatus.mood}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Nivel de energía:</span>
-                    <span className="text-slate-200">{assistantStatus.energy}</span>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Modo personalidad:</span>
-                    <span className="text-slate-200">{assistantStatus.personalityMode}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-400">Última actualización:</span>
-                    <span className="text-slate-200">{assistantStatus.lastUpdate}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Configuración del Prompt Central */}
-            <div className="bg-slate-800/40 rounded-xl p-6 border border-slate-700/30 backdrop-blur-sm">
-              <h3 className="text-md font-medium mb-4 text-slate-200 flex items-center gap-2">
-                <Cat className="w-4 h-4 text-amber-400" />
-                Prompt Central de Catto
-              </h3>
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="central-prompt" className="text-slate-300 text-sm">
-                    Personalidad y comportamiento base
-                  </Label>
-                  <Textarea
-                    id="central-prompt"
-                    value={centralPrompt}
-                    onChange={(e) => setCentralPrompt(e.target.value)}
-                    className="mt-2 min-h-[120px] bg-slate-700/50 border-slate-600/30 text-slate-100 placeholder-slate-400 focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30 rounded-lg resize-none"
-                    placeholder="Define la personalidad y comportamiento de Catto..."
-                  />
-                </div>
-                <Button 
-                  onClick={handleSavePrompt}
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-900 font-medium"
-                >
-                  <Save className="w-4 h-4 mr-2" />
-                  Guardar Prompt
-                </Button>
-              </div>
-            </div>
-          </div>
+          <ConfigurationView
+            assistantStatus={assistantStatus}
+            centralPrompt={centralPrompt}
+            setCentralPrompt={setCentralPrompt}
+            onSavePrompt={handleSavePrompt}
+          />
         );
       case "events":
-        return (
-          <div className="flex-1 p-6 text-slate-100">
-            <h2 className="text-lg font-light mb-4 text-slate-200 flex items-center gap-2">
-              <Calendar className="w-5 h-5" />
-              Eventos
-            </h2>
-            <div className="bg-slate-800/40 rounded-xl p-5 border border-slate-700/30 backdrop-blur-sm">
-              <p className="text-slate-300 font-light">Próximos eventos...</p>
-            </div>
-          </div>
-        );
+        return <EventsView />;
       case "notes":
-        return (
-          <div className="flex-1 p-6 text-slate-100 overflow-y-auto">
-            <h2 className="text-lg font-light mb-6 text-slate-200 flex items-center gap-2">
-              <FileText className="w-5 h-5" />
-              Notas del Asistente
-            </h2>
-            <div className="space-y-4">
-              {notes.map((note) => (
-                <div key={note.id} className="bg-slate-800/40 rounded-xl p-5 border border-slate-700/30 backdrop-blur-sm">
-                  <div className="mb-3">
-                    <p className="text-slate-200 text-sm leading-relaxed">{note.body}</p>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {note.tags.map((tag, index) => (
-                        <span 
-                          key={index}
-                          className="inline-flex items-center gap-1 px-2 py-1 bg-amber-500/10 text-amber-400 text-xs rounded-md border border-amber-500/20"
-                        >
-                          <Tag className="w-3 h-3" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <span className="text-slate-500 text-xs font-mono">ID: {note.id}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
+        return <NotesView notes={notes} />;
       default:
         return (
-          <>
-            {/* Área de mensajes */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 scrollbar-thin scrollbar-thumb-slate-600">
-              <div className="space-y-4">
-                {messages.map((message, index) => (
-                  <div key={message.id}>
-                    <Message message={message} />
-                    {index < messages.length - 1 && (
-                      <div className="flex justify-center my-3">
-                        <div className="w-1 h-1 bg-slate-600 rounded-full"></div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Área de input */}
-            <div className="px-6 pb-6 pt-2">
-              <MessageInput onSendMessage={handleSendMessage} />
-            </div>
-          </>
+          <ChatView 
+            messages={messages}
+            onSendMessage={handleSendMessage}
+          />
         );
     }
   };
