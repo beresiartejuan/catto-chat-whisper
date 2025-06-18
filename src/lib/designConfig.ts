@@ -12,8 +12,8 @@ export const designConfig = {
     }
   },
   layout: {
-    containerHeight: "70vh",
-    maxWidth: "3xl",
+    containerHeight: "100vh",
+    maxWidth: "4xl",
     borderRadius: "2xl",
     padding: {
       container: "4",

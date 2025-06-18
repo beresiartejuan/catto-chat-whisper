@@ -42,38 +42,40 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className={`flex flex-col h-[${designConfig.layout.containerHeight}] max-w-${designConfig.layout.maxWidth} mx-auto bg-${designConfig.colors.background} rounded-${designConfig.layout.borderRadius} m-${designConfig.layout.padding.container} border border-${designConfig.colors.border} shadow-xl`}>
-      {/* Encabezado minimalista con Catto */}
-      <div className={`flex items-center justify-between px-6 py-4 border-b border-${designConfig.colors.border} bg-${designConfig.colors.surface} rounded-t-${designConfig.layout.borderRadius} flex-shrink-0`}>
-        <div className="flex items-center gap-2">
-          <Cat className={`w-5 h-5 text-${designConfig.colors.text.accent}`} />
-          <span className={`text-${designConfig.colors.text.primary} font-light text-lg`}>Catto</span>
+    <div className="flex items-center justify-center min-h-screen bg-slate-900 p-4">
+      <div className={`flex flex-col h-[${designConfig.layout.containerHeight}] w-full max-w-${designConfig.layout.maxWidth} bg-${designConfig.colors.background} rounded-${designConfig.layout.borderRadius} border border-${designConfig.colors.border} shadow-xl`}>
+        {/* Encabezado minimalista con Catto */}
+        <div className={`flex items-center justify-between px-6 py-4 border-b border-${designConfig.colors.border} bg-${designConfig.colors.surface} rounded-t-${designConfig.layout.borderRadius} flex-shrink-0`}>
+          <div className="flex items-center gap-2">
+            <Cat className={`w-5 h-5 text-${designConfig.colors.text.accent}`} />
+            <span className={`text-${designConfig.colors.text.primary} font-light text-lg`}>Catto</span>
+          </div>
+          <div className="flex space-x-1">
+            {navigationConfig.map((nav) => {
+              const IconComponent = getIconComponent(nav.icon);
+              const isActive = state.activeSection === nav.key;
+              
+              return (
+                <button
+                  key={nav.key}
+                  onClick={() => actions.setActiveSection(nav.key as ActiveSection)}
+                  className={`p-2.5 rounded-lg transition-all duration-200 ${
+                    isActive 
+                      ? `bg-${designConfig.colors.primary}-500/20 text-${designConfig.colors.text.accent}` 
+                      : `hover:bg-${designConfig.colors.surface}/50 text-${designConfig.colors.text.secondary} hover:text-${designConfig.colors.text.primary}`
+                  }`}
+                  title={nav.title}
+                >
+                  <IconComponent className="w-4 h-4" />
+                </button>
+              );
+            })}
+          </div>
         </div>
-        <div className="flex space-x-1">
-          {navigationConfig.map((nav) => {
-            const IconComponent = getIconComponent(nav.icon);
-            const isActive = state.activeSection === nav.key;
-            
-            return (
-              <button
-                key={nav.key}
-                onClick={() => actions.setActiveSection(nav.key as ActiveSection)}
-                className={`p-2.5 rounded-lg transition-all duration-200 ${
-                  isActive 
-                    ? `bg-${designConfig.colors.primary}-500/20 text-${designConfig.colors.text.accent}` 
-                    : `hover:bg-${designConfig.colors.surface}/50 text-${designConfig.colors.text.secondary} hover:text-${designConfig.colors.text.primary}`
-                }`}
-                title={nav.title}
-              >
-                <IconComponent className="w-4 h-4" />
-              </button>
-            );
-          })}
-        </div>
-      </div>
 
-      <div className="flex-1 min-h-0 flex flex-col">
-        {renderContent()}
+        <div className="flex-1 min-h-0 flex flex-col">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
