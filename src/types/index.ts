@@ -27,4 +27,6 @@ export interface ChatState {
   centralPrompt: string;
   assistantStatus: AssistantStatus;
   notes: Note[];
+  isConnected?: boolean;
+  connectionError?: string | null;
 }
