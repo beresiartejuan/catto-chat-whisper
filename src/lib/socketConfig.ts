@@ -1,6 +1,6 @@
 
 export const SOCKET_CONFIG = {
-  url: process.env.VITE_SOCKET_URL || 'http://localhost:3001',
+  url: import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001',
   options: {
     autoConnect: true,
     reconnection: true,
