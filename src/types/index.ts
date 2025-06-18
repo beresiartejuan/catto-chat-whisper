@@ -3,7 +3,7 @@ export interface ChatMessage {
   id: string;
   content: string;
   sender: "user" | "catto";
-  timestamp: Date;
+  timestamp: string; // Cambiado de Date a string (ISO string)
 }
 
 export interface Note {

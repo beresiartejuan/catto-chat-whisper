@@ -8,7 +8,7 @@ interface ChatMessage {
   id: string;
   content: string;
   sender: "user" | "catto";
-  timestamp: Date;
+  timestamp: string; // Cambiado a string (ISO string)
 }
 
 interface ChatViewProps {

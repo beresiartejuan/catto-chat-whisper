@@ -6,7 +6,7 @@ interface ChatMessage {
   id: string;
   content: string;
   sender: "user" | "catto";
-  timestamp: Date;
+  timestamp: string; // ISO string
 }
 
 interface MessageProps {
@@ -15,6 +15,12 @@ interface MessageProps {
 
 const Message = ({ message }: MessageProps) => {
   const isUser = message.sender === "user";
+  
+  // Convertir ISO string a Date solo para mostrar
+  const displayTime = new Date(message.timestamp).toLocaleTimeString('es-ES', { 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
   
   return (
     <div className={cn("flex items-start space-x-3", isUser && "flex-row-reverse space-x-reverse")}>
@@ -44,10 +50,7 @@ const Message = ({ message }: MessageProps) => {
         </div>
         
         <span className="text-xs text-slate-400 mt-1.5 px-2">
-          {message.timestamp.toLocaleTimeString('es-ES', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
-          })}
+          {displayTime}
         </span>
       </div>
     </div>

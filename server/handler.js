@@ -1,3 +1,4 @@
+
 // Crea una funcion llamada "handler" que reciba un server de socket.io y que lo retorne, quiero que además agregues tipos con JSDoc.
 /**
  * @typedef {import('socket.io').Server} SocketIOServer
@@ -26,7 +27,7 @@ function handler(io) {
                 id: crypto.randomUUID(),
                 content: data.content,
                 sender: "catto",
-                timestamp: new Date()
+                timestamp: new Date().toISOString() // Usar ISO string
               });
         });
     });

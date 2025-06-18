@@ -20,7 +20,7 @@ export class ChatLogic {
       id: Date.now().toString(),
       content,
       sender,
-      timestamp: new Date(),
+      timestamp: new Date().toISOString(), // Usar ISO string
     };
   }
 
@@ -30,7 +30,7 @@ export class ChatLogic {
         id: "1",
         content: "¡Miau! Soy Catto, tu asistente personal. ¿En qué puedo ayudarte hoy? 🐾",
         sender: "catto",
-        timestamp: new Date(),
+        timestamp: new Date().toISOString(), // Usar ISO string
       },
     ];
   }

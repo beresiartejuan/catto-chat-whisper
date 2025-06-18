@@ -44,7 +44,7 @@ export const useChat = () => {
             ? "¡Hola! Estoy conectado al servidor. ¿En qué puedo ayudarte? 🐾"
             : "Conectando con el servidor... 🔌",
           sender: "catto" as const,
-          timestamp: new Date(),
+          timestamp: new Date().toISOString(), // Usar ISO string
         }
       ],
       activeSection,
