@@ -1,6 +1,6 @@
 
 export const SOCKET_CONFIG = {
-  url: import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001',
+  url: import.meta.env.VITE_SOCKET_URL || 'http://localhost:3000',
   options: {
     autoConnect: true,
     reconnection: true,
@@ -15,23 +15,23 @@ export const SOCKET_EVENTS = {
   CONNECT: 'connect',
   DISCONNECT: 'disconnect',
   CONNECT_ERROR: 'connect_error',
-  
+
   // Chat events
   SEND_MESSAGE: 'send_message',
   RECEIVE_MESSAGE: 'receive_message',
   MESSAGE_HISTORY: 'message_history',
-  
+
   // Assistant events
   ASSISTANT_STATUS: 'assistant_status',
   UPDATE_PROMPT: 'update_prompt',
   PROMPT_UPDATED: 'prompt_updated',
-  
+
   // Notes events
   NOTES_LIST: 'notes_list',
   NOTE_CREATED: 'note_created',
   NOTE_UPDATED: 'note_updated',
   NOTE_DELETED: 'note_deleted',
-  
+
   // Events events
   EVENTS_LIST: 'events_list',
   EVENT_CREATED: 'event_created',
