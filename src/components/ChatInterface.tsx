@@ -42,12 +42,12 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className={`flex flex-col h-[${designConfig.layout.containerHeight}] max-w-${designConfig.layout.maxWidth} mx-auto bg-${designConfig.colors.background} rounded-${designConfig.layout.borderRadius} m-${designConfig.layout.padding.container} border border-${designConfig.colors.border} shadow-xl`}>
+    <div className="flex flex-col h-[70vh] max-w-2xl mx-auto bg-slate-800 rounded-2xl m-4 border border-slate-700/30 shadow-xl">
       {/* Header con indicador de conexión */}
-      <div className={`flex items-center justify-between px-6 py-4 border-b border-${designConfig.colors.border} bg-${designConfig.colors.surface} rounded-t-${designConfig.layout.borderRadius} flex-shrink-0`}>
+      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700/30 bg-slate-700 rounded-t-2xl flex-shrink-0">
         <div className="flex items-center gap-3">
-          <Cat className={`w-5 h-5 text-${designConfig.colors.text.accent}`} />
-          <span className={`text-${designConfig.colors.text.primary} font-light text-lg`}>Catto</span>
+          <Cat className="w-5 h-5 text-amber-400" />
+          <span className="text-slate-200 font-light text-lg">Catto</span>
           
           {/* Indicador de conexión */}
           <div className="flex items-center gap-1">
@@ -75,8 +75,8 @@ const ChatInterface = () => {
                 onClick={() => actions.setActiveSection(nav.key as ActiveSection)}
                 className={`p-2.5 rounded-lg transition-all duration-200 ${
                   isActive 
-                    ? `bg-${designConfig.colors.primary}-500/20 text-${designConfig.colors.text.accent}` 
-                    : `hover:bg-${designConfig.colors.surface}/50 text-${designConfig.colors.text.secondary} hover:text-${designConfig.colors.text.primary}`
+                    ? "bg-amber-500/20 text-amber-400" 
+                    : "hover:bg-slate-700/50 text-slate-400 hover:text-slate-200"
                 }`}
                 title={nav.title}
               >
