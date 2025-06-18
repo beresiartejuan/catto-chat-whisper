@@ -35,7 +35,7 @@ const MessageInput = ({ onSendMessage }: MessageInputProps) => {
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Escribe a Catto..."
-            className="min-h-[50px] max-h-32 resize-none bg-slate-800/40 border-slate-600/30 text-slate-100 placeholder-slate-400 focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30 rounded-xl backdrop-blur-sm font-light"
+            className="min-h-[50px] max-h-32 resize-none bg-slate-700 border-slate-600/30 text-slate-100 placeholder-slate-400 focus:border-amber-400/50 focus:ring-1 focus:ring-amber-400/30 rounded-xl font-light"
             rows={1}
           />
         </div>
