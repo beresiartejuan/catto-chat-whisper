@@ -33,11 +33,6 @@ export const navigationConfig = [
     title: "Chat" 
   },
   { 
-    key: "events" as const, 
-    icon: "Calendar", 
-    title: "Eventos" 
-  },
-  { 
     key: "notes" as const, 
     icon: "FileText", 
     title: "Notas" 

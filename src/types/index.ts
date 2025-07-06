@@ -19,7 +19,7 @@ export interface AssistantStatus {
   personalityMode: string;
 }
 
-export type ActiveSection = "chat" | "config" | "events" | "notes";
+export type ActiveSection = "chat" | "config" | "notes";
 
 export interface ChatState {
   messages: ChatMessage[];

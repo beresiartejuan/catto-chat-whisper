@@ -1,6 +1,5 @@
 import { Cat, Calendar, FileText, Settings, Wifi, WifiOff } from "lucide-react";
 import ConfigurationView from "./ConfigurationView";
-import EventsView from "./EventsView";
 import NotesView from "./NotesView";
 import ChatView from "./ChatView";
 import { useChat } from "@/hooks/useChat";
@@ -11,7 +10,7 @@ const ChatInterface = () => {
   const { state, actions } = useChat();
 
   const getIconComponent = (iconName: string) => {
-    const icons = { Cat, Calendar, FileText, Settings };
+    const icons = { Cat, FileText, Settings };
     return icons[iconName as keyof typeof icons];
   };
 
@@ -25,8 +24,6 @@ const ChatInterface = () => {
             onSavePrompt={actions.handleSavePrompt}
           />
         );
-      case "events":
-        return <EventsView />;
       case "notes":
         return <NotesView notes={state.notes} />;
       default:
