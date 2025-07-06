@@ -1,22 +1,14 @@
 
 import { Settings } from "lucide-react";
-import AssistantStatus from "./AssistantStatus";
 import PromptConfiguration from "./PromptConfiguration";
 
 interface ConfigurationViewProps {
-  assistantStatus: {
-    mood: string;
-    energy: string;
-    lastUpdate: string;
-    personalityMode: string;
-  };
   centralPrompt: string;
   setCentralPrompt: (prompt: string) => void;
   onSavePrompt: () => void;
 }
 
 const ConfigurationView = ({ 
-  assistantStatus, 
   centralPrompt, 
   setCentralPrompt, 
   onSavePrompt 
@@ -28,7 +20,6 @@ const ConfigurationView = ({
         Configuración
       </h2>
       
-      <AssistantStatus status={assistantStatus} />
       <PromptConfiguration 
         centralPrompt={centralPrompt}
         setCentralPrompt={setCentralPrompt}

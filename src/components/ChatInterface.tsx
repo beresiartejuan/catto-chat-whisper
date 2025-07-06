@@ -1,4 +1,3 @@
-
 import { Cat, Calendar, FileText, Settings, Wifi, WifiOff } from "lucide-react";
 import ConfigurationView from "./ConfigurationView";
 import EventsView from "./EventsView";
@@ -21,7 +20,6 @@ const ChatInterface = () => {
       case "config":
         return (
           <ConfigurationView
-            assistantStatus={state.assistantStatus}
             centralPrompt={state.centralPrompt}
             setCentralPrompt={actions.setCentralPrompt}
             onSavePrompt={actions.handleSavePrompt}
